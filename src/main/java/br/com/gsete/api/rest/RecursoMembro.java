@@ -27,7 +27,7 @@ public class RecursoMembro {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-	public Response getMembro( @PathParam("id") Integer id) {
+	public Response getMembro( @PathParam("id") Long id) {
 		Membro membro = servico.getMembro(id);
 		if(membro == null){
 			return Response.noContent().build();
@@ -38,7 +38,7 @@ public class RecursoMembro {
 	@DELETE
 	@Path("/{id}")
 	@Consumes("application/json")
-	public Response deletarMembro( @PathParam("id") Integer id) {
+	public Response deletarMembro( @PathParam("id") Long id) {
 		servico.removerMembro(id);
 		return Response.noContent().build();
 	}
