@@ -27,7 +27,11 @@ public class ServicoMembro {
 	}
 	
 	public List<Membro> buscarTodosPaginado(int start, int size) {
-		return null;
+		List<Membro> lista = new ArrayList<Membro>(membros.values());
+		if(start + size > lista.size()) { 
+			return new ArrayList<Membro>(); 
+		}
+		return lista.subList(start, start + size);
 	}
 	
 	public Membro getMembro(Long id) {
