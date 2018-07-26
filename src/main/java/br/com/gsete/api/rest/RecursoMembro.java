@@ -6,7 +6,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.gsete.models.Membro;
@@ -17,15 +16,8 @@ public class RecursoMembro {
 	
 	ServicoMembro servico;
 	
-	public RecursoMembro() { /*servico = new ServicoMembro();*/ }
-	
-	@GET
-	@Path("/boasvindas")
-	@Produces(MediaType.TEXT_HTML)
-	public String Hello() {
-		return "<h4>Bem vindo ao recurso de membros do gsete!!<h4>";
-	}
-	
+	public RecursoMembro() { servico = new ServicoMembro(); }
+		
 	@GET
 	@Produces("application/json")
 	public Response todosOsMembros() {
