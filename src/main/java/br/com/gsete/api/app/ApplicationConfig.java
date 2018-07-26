@@ -1,19 +1,18 @@
 package br.com.gsete.api.app;
 
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.ws.rs.core.Application;
+import br.com.gsete.api.rest.RecursoMembro;
 
-import br.com.gsete.api.rest.MembrosRecurso;
-import br.com.gsete.api.rest.UsuarioRecurso;
-
+@ApplicationPath("")
 public class ApplicationConfig extends Application {
 	private Set<Object> singletons = new HashSet<Object>();
 
 	public ApplicationConfig() {
-		singletons.add(new UsuarioRecurso());
-		singletons.add(new MembrosRecurso());
+		singletons.add(new RecursoMembro());
 	}
 
 	@Override
