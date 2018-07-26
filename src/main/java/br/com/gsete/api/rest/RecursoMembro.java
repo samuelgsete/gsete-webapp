@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import br.com.gsete.models.Membro;
@@ -20,7 +21,11 @@ public class RecursoMembro {
 		
 	@GET
 	@Produces("application/json")
-	public Response todosOsMembros() {
+	public Response todosOsMembros(@QueryParam("start") int start, @QueryParam("size") int size) {
+		System.out.println("start: " + start+ "\nsize: " + size);
+		if(start >= 0 && size >= 0) { 
+			return Response.ok(servico.buscarTodosPaginado(start, size)).build(); 
+		}
 		return Response.ok(servico.buscarTodos()).build();
 	}
 	
