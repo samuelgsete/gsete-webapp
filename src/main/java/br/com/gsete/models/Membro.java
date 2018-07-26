@@ -37,8 +37,8 @@ public class Membro {
 		this.nome = nome;
 	}
 
-	public Membro(String nome, String rg, String cpf, String cargo, String status, Date nascimento, Date dataBatismo, Date dataConversao) {
-		this.id = ++Membro.i;
+	public Membro(Integer id, String nome, String rg, String cpf, String cargo, String status, Date nascimento, Date dataBatismo, Date dataConversao) {
+		this.id = id;
 		this.nome = nome;
 		this.rg = rg;
 		this.cpf = cpf;
