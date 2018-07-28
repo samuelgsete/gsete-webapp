@@ -15,7 +15,7 @@ public class ServicoMembro {
 		catch (ParseException e1) { e1.printStackTrace(); }
 	}
 	
-	public List<Membro> buscarTodos() {
+	private List<Membro> buscarTodos() {
 		return repositorio.fildAll();
 	}
 	
