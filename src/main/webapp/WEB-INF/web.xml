@@ -20,7 +20,7 @@
 			<param-value>br.com.gsete.api.app.ApplicationConfig</param-value>
 		</init-param>
 	</servlet>
-
+		
 	<servlet-mapping>
 		<servlet-name>resteasy-servlet</servlet-name>
 		<url-pattern>/api/v1/*</url-pattern>
