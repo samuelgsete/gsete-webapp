@@ -22,18 +22,16 @@ public class RecursoMembro {
 	@GET
 	@Produces("application/json")
 	public Response todosOsMembros(@QueryParam("inicio") int inicio, @QueryParam("limite") int limite) {
-		if(inicio >= 0 && limite >= 0) { 
-			return Response
-		            .status(200)
-		            .entity(servico.buscarTodosPaginado(inicio, limite))
-		            .header("Access-Control-Allow-Origin", "*")
-		            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-		            .header("Access-Control-Allow-Credentials", "true")
-		            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-		            .header("Access-Control-Max-Age", "1209600")
-		            .build();
-		}
-		return Response.ok(servico.buscarTodos()).build();
+		return Response
+	            .status(200)
+	            .entity(servico.buscarTodosPaginado(inicio, limite))
+	            .header("Access-Control-Allow-Origin", "*")
+	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	            .header("Access-Control-Allow-Credentials", "true")
+	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+	            .header("Access-Control-Max-Age", "1209600")
+	            .build();
+		
 	}
 	
 	@GET
