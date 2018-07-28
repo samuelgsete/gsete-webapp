@@ -26,12 +26,12 @@ public class ServicoMembro {
 		return new ArrayList<Membro>(membros.values());
 	}
 	
-	public List<Membro> buscarTodosPaginado(int start, int size) {
+	public List<Membro> buscarTodosPaginado(int inicio, int limite) {
 		List<Membro> lista = new ArrayList<Membro>(membros.values());
-		if(start + size > lista.size()) { 
+		if(inicio + limite > lista.size()) { 
 			return new ArrayList<Membro>(); 
 		}
-		return lista.subList(start, start + size);
+		return lista.subList(inicio, inicio + limite);
 	}
 	
 	public Membro getMembro(Long id) {
@@ -47,7 +47,7 @@ public class ServicoMembro {
 		}
 		return null;
 	}
-	
+		
 	private void povoarLista() throws ParseException  {
 		membros.put(1L, new Membro(1, "Samuel de Souza Taveira", "20078888721", "607.839.003-17", "Músico", "ATIVO", new SimpleDateFormat("dd/MM/yyyy").parse("21/06/1995"), new SimpleDateFormat("dd/MM/yyyy").parse("18/07/2009"), new Date()));
 		membros.put(2L, new Membro(2, "Aldenora Maia da Silva", "200500904149-6", "003.862.993-31", "Regente de Senhoras", "ATIVO", new SimpleDateFormat("dd/MM/yyyy").parse("01/12/1984"), new SimpleDateFormat("dd/MM/yyyy").parse("02/05/1999"), new Date()));

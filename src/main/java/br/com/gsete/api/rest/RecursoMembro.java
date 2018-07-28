@@ -15,16 +15,23 @@ import br.com.gsete.service.ServicoMembro;
 @Path("/membros")
 public class RecursoMembro {
 	
-	ServicoMembro servico;
+	private ServicoMembro servico;
 	
 	public RecursoMembro() { servico = new ServicoMembro(); }
 		
 	@GET
 	@Produces("application/json")
-	public Response todosOsMembros(@QueryParam("start") int start, @QueryParam("size") int size) {
-		System.out.println("start: " + start+ "\nsize: " + size);
-		if(start >= 0 && size >= 0) { 
-			return Response.ok(servico.buscarTodosPaginado(start, size)).build(); 
+	public Response todosOsMembros(@QueryParam("inicio") int inicio, @QueryParam("limite") int limite) {
+		if(inicio >= 0 && limite >= 0) { 
+			return Response
+		            .status(200)
+		            .entity(servico.buscarTodosPaginado(inicio, limite))
+		            .header("Access-Control-Allow-Origin", "*")
+		            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+		            .header("Access-Control-Allow-Credentials", "true")
+		            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+		            .header("Access-Control-Max-Age", "1209600")
+		            .build();
 		}
 		return Response.ok(servico.buscarTodos()).build();
 	}
@@ -37,7 +44,13 @@ public class RecursoMembro {
 		if(membro == null){
 			return Response.noContent().build();
 		}
-		return Response.ok(membro).build();
+		return Response.ok(membro)
+				.header("Access-Control-Allow-Origin", "*")
+	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	            .header("Access-Control-Allow-Credentials", "true")
+	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+	            .header("Access-Control-Max-Age", "1209600")
+				.build();
 	}
 	
 	@DELETE
@@ -45,6 +58,12 @@ public class RecursoMembro {
 	@Consumes("application/json")
 	public Response deletarMembro( @PathParam("id") Long id) {
 		servico.removerMembro(id);
-		return Response.noContent().build();
+		return Response.noContent()
+				.header("Access-Control-Allow-Origin", "*")
+	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	            .header("Access-Control-Allow-Credentials", "true")
+	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+	            .header("Access-Control-Max-Age", "1209600")
+	            .build();
 	}
 }
