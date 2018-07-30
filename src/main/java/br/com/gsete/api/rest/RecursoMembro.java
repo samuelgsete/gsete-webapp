@@ -26,10 +26,7 @@ public class RecursoMembro {
 	            .status(200)
 	            .entity(servico.buscarTodosPaginado(inicio, limite))
 	            .header("Access-Control-Allow-Origin", "*")
-	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-	            .header("Access-Control-Allow-Credentials", "true")
 	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-	            .header("Access-Control-Max-Age", "1209600")
 	            .build();
 		
 	}
@@ -42,12 +39,10 @@ public class RecursoMembro {
 		if(membro == null){
 			return Response.noContent().build();
 		}
-		return Response.ok(membro)
+		return Response
+				.ok(membro)
 				.header("Access-Control-Allow-Origin", "*")
-	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-	            .header("Access-Control-Allow-Credentials", "true")
 	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-	            .header("Access-Control-Max-Age", "1209600")
 				.build();
 	}
 	
@@ -56,12 +51,10 @@ public class RecursoMembro {
 	@Consumes("application/json")
 	public Response deletarMembro( @PathParam("id") Long id) {
 		servico.removerMembro(id);
-		return Response.noContent()
+		return Response
+				.noContent()
 				.header("Access-Control-Allow-Origin", "*")
-	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-	            .header("Access-Control-Allow-Credentials", "true")
 	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-	            .header("Access-Control-Max-Age", "1209600")
 	            .build();
 	}
 }
