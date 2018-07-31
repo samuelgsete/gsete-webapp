@@ -42,4 +42,6 @@ public class ServicoMembro {
 		}
 		return null;
 	}			
+	
+	public Integer totalElementos() { return repositorio.countAll(); }
 }

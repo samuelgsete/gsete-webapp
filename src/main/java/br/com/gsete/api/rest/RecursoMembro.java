@@ -22,13 +22,14 @@ public class RecursoMembro {
 	@GET
 	@Produces("application/json")
 	public Response todosOsMembros(@QueryParam("inicio") int inicio, @QueryParam("limite") int limite) {
-		return Response
-	            .status(200)
-	            .entity(servico.buscarTodosPaginado(inicio, limite))
-	            .header("Access-Control-Allow-Origin", "*")
-	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-	            .build();
-		
+		return Response.status(200).entity(servico.buscarTodosPaginado(inicio, limite)).build();
+	}
+	
+	@GET
+	@Path("/total")
+	@Produces("application/json")
+	public Response totalMembro() {
+		return Response.ok(servico.totalElementos()).build();
 	}
 	
 	@GET
@@ -36,25 +37,16 @@ public class RecursoMembro {
 	@Produces("application/json")
 	public Response getMembro( @PathParam("id") Long id) {
 		Membro membro = servico.getMembro(id);
-		if(membro == null){
-			return Response.noContent().build();
+		if(membro == null){ 
+			return Response.noContent().build(); 
 		}
-		return Response
-				.ok(membro)
-				.header("Access-Control-Allow-Origin", "*")
-	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-				.build();
+		return Response.ok(membro).build();
 	}
 	
 	@DELETE
 	@Path("/{id}")
 	@Consumes("application/json")
 	public Response deletarMembro( @PathParam("id") Long id) {
-		servico.removerMembro(id);
-		return Response
-				.noContent()
-				.header("Access-Control-Allow-Origin", "*")
-	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-	            .build();
+		return Response.noContent().entity(servico.removerMembro(id)).build();
 	}
 }

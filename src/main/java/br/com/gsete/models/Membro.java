@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Membro extends Pessoa {
 
-	@JsonProperty(value = "Endereco", required = true)
+	@JsonProperty(value = "endereco", required = true)
 	private Endereco endereco;
 	@JsonProperty(value = "naturalidade", required = true)
 	private String naturalidade;
