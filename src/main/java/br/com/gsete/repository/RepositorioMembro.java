@@ -52,5 +52,5 @@ public class RepositorioMembro {
 		
 	public Membro remove(Long id) { return membros.remove(id); }
 	
-	
+	public Integer countAll() { return this.membros.size(); }	
 }
