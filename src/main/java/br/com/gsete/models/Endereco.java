@@ -82,7 +82,7 @@ public class Endereco {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	
+		
 	@Override
 	public String toString() {
 		return "Endereco [logradouro=" + logradouro + ", numero=" + numero + ", cep=" + cep + ", uf=" + uf + ", bairro="

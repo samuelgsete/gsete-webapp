@@ -2,7 +2,9 @@ package br.com.gsete.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
+import java.util.Objects;
 
 public class Membro extends Pessoa {
 
@@ -15,10 +17,10 @@ public class Membro extends Pessoa {
 	@JsonProperty(value = "nomeMae", required = true)
 	private String nomeMae;
 	@JsonProperty(value = "dataBatismo")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataBatismo;
 	@JsonProperty(value = "dataConversao")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataConversao;
 	@JsonProperty(value = "cargo", required = true)
 	private String cargo;
@@ -29,7 +31,7 @@ public class Membro extends Pessoa {
 	@JsonProperty(value = "departamento")
 	private String departamento;
 	@JsonProperty(value = "dataRegistro", required = true)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataRegistro;
 	@JsonProperty(value = "observacoes")
 	private String observacoes;
@@ -159,5 +161,23 @@ public class Membro extends Pessoa {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}	
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) { return true; }
+        if (o == null || getClass() != o.getClass()) { return false; }
+
+        Membro that = (Membro) o;
+
+        return Objects.equals(cpf, that.cpf);
+	}   
+	
+	@Override
+	public String toString() {
+		return "Membro [endereco=" + endereco + ", naturalidade=" + naturalidade + ", nomePai=" + nomePai + ", nomeMae="
+				+ nomeMae + ", dataBatismo=" + dataBatismo + ", dataConversao=" + dataConversao + ", cargo=" + cargo
+				+ ", localBatismo=" + localBatismo + ", congregacao=" + congregacao + ", departamento=" + departamento
+				+ ", dataRegistro=" + dataRegistro + ", observacoes=" + observacoes + ", status=" + status + "]";
+	}		
 }
