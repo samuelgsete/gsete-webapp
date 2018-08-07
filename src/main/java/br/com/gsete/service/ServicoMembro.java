@@ -36,6 +36,26 @@ public class ServicoMembro {
 		return null;
 	}
 	
+	public Membro salvarMembro(Membro m) {
+		if(m != null) {
+			return repositorio.save(m);
+		}
+		return null;
+	}
+	
+	public Membro atualizarMembro(Membro m) {
+		if(m.getId() != null){
+			Membro membro = this.getMembro(new Long(m.getId()));
+			if(!m.equals(membro)) {
+				return null;
+			}
+			return repositorio.update(m);
+		}
+		else {
+			return null;
+		}
+	}
+	
 	public Membro removerMembro(Long id) {
 		if(id > 0) {
 			return repositorio.remove(id);

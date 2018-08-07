@@ -20,7 +20,7 @@ public class Pessoa {
 	@JsonProperty(value = "sexo", required = true)
 	protected String sexo;
 	@JsonProperty(value = "dataNascimento", required = true)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	protected Date dataNascimento;
 	@JsonProperty(value = "celular", required = true)
 	protected String celular;
@@ -119,7 +119,11 @@ public class Pessoa {
 	public Integer getId() {
 		return id;
 	}
-
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+		
 	@Override
 	public String toString() {
 		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", estadoCivil=" + estadoCivil

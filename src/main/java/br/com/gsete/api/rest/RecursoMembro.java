@@ -3,6 +3,8 @@ package br.com.gsete.api.rest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -41,6 +43,18 @@ public class RecursoMembro {
 			return Response.noContent().build(); 
 		}
 		return Response.ok(membro).build();
+	}
+	
+	@POST
+	@Consumes("application/json")
+	public Response salvarMembro(Membro m) {
+		return servico.salvarMembro(m) == null ? Response.status(203).build() : Response.status(201).build();
+	}
+	
+	@PUT
+	@Consumes("application/json")
+	public Response atualizarMembro(Membro m) {
+		return servico.atualizarMembro(m) == null ? Response.status(203).build() : Response.status(201).build();
 	}
 	
 	@DELETE
