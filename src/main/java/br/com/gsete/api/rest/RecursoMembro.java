@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
+import static java.lang.String.format;
 
 import br.com.gsete.models.Membro;
 import br.com.gsete.service.ServicoMembro;
@@ -24,16 +25,14 @@ public class RecursoMembro {
 	@GET
 	@Produces("application/json")
 	public Response todosOsMembros(@QueryParam("inicio") int inicio, @QueryParam("limite") int limite) {
-		return Response.status(200).entity(servico.buscarTodosPaginado(inicio, limite)).build();
+		Integer total = servico.totalElementos();
+		return Response
+				.status(200)
+				.entity(servico.buscarTodosPaginado(inicio, limite))
+				.header("Content-Range", total == 0 ? "0-0/0": format("%d-%d/%d", inicio, limite, total))
+				.build();
 	}
-	
-	@GET
-	@Path("/total")
-	@Produces("application/json")
-	public Response totalMembro() {
-		return Response.ok(servico.totalElementos()).build();
-	}
-	
+
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
