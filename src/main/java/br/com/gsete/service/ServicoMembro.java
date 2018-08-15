@@ -19,16 +19,16 @@ public class ServicoMembro {
 		return repositorio.fildAll();
 	}
 	
-	public List<Membro> buscarTodosPaginado(int inicio, int limite) {
+	public List<Membro> buscarTodosPaginado(int inicio, int limite, String filtro) {
 		if(inicio == 0 && limite == 0) {
 			return buscarTodos();
 		}
 		if(inicio >= 0 && limite >= 0) {
-			return repositorio.buscaPaginada(inicio, limite);
+			return repositorio.buscaPaginada(inicio, limite, filtro);
 		}
 		return null;		
 	}
-	
+		
 	public Membro getMembro(Long id) {
 		if(id > 0){
 			return repositorio.findBy(id);

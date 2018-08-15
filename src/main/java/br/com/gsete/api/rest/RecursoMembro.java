@@ -24,12 +24,11 @@ public class RecursoMembro {
 		
 	@GET
 	@Produces("application/json")
-	public Response todosOsMembros(@QueryParam("inicio") int inicio, @QueryParam("limite") int limite) {
-		Integer total = servico.totalElementos();
+	public Response todosOsMembros(@QueryParam("inicio") int inicio, @QueryParam("limite") int limite, @QueryParam("filtro") String filtro) {		
 		return Response
 				.status(200)
-				.entity(servico.buscarTodosPaginado(inicio, limite))
-				.header("Content-Range", total == 0 ? "0-0/0": format("%d-%d/%d", inicio, limite, total))
+				.entity(servico.buscarTodosPaginado(inicio, limite, filtro))
+				.header("Content-Range", format("%d-%d/%d", inicio, limite, servico.totalElementos()))
 				.build();
 	}
 
