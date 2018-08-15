@@ -14,6 +14,7 @@ public class RepositorioMembro {
 	
 	private Map<Long, Membro> membros = DataBaseClass.getMembros();
 	private SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+	private Integer tamanho = membros.size();
 	
 	public RepositorioMembro() throws ParseException {
 		membros.put(1L, new Membro(1, "SAMUEL DE SOUZA TAVEIRA", "20078888721", "607.839.003-17", "Solteiro(a)", "Masculino", f.parse("21/06/1995"), "(85)98971-1010", "(85)93376-2133", "samuelgsete@gmail.com", new Endereco("RUA PAULO HENRIQUE CAVALCANTE", 95, "61895-000", "CE", "AGUA VERDE", "GUAIÚBA", "BRASILEIRO", "CASA"), "REDENÇÃO", "ANTONIO TAVEIRA", "MARIA MADALENA DE SOUZA TAVEIRA", f.parse("13/04/2009"), new Date(), "MÚSICO", "AÇUDE DO SR. NAZÁRO", "SEDE", "JOVENS", new Date(), "NACIDO NA FÉ", "ATIVO"));
@@ -37,12 +38,27 @@ public class RepositorioMembro {
 
 	}
 	
-	public List<Membro> buscaPaginada(Integer inicio, Integer limite) {
+	public List<Membro> buscaPaginada(Integer inicio, Integer limite, String filtro) {
 		List<Membro> lista = new ArrayList<Membro>(membros.values());
-		if(inicio + limite > lista.size()) { 
-			return lista.subList(inicio, lista.size()); 
+		List<Membro> listaFiltrada = filtrarMembro(filtro, lista);
+		tamanho = listaFiltrada.size();
+		if(inicio + limite > listaFiltrada.size()) { 
+			return listaFiltrada.subList(inicio, listaFiltrada.size()); 
 		}
-		return lista.subList(inicio, inicio + limite);
+		return listaFiltrada.subList(inicio, inicio + limite);
+	}
+	
+	private List<Membro> filtrarMembro(String filtro, List<Membro> membros) {
+		if(filtro == null || filtro == ""){
+			return membros;
+		}
+		List<Membro> listaFiltrada = new ArrayList<Membro>();
+		for (Membro membro : membros) {
+			if(membro.getNome().toLowerCase().contains(filtro.toLowerCase())){
+				listaFiltrada.add(membro);
+			}
+		}
+		return listaFiltrada;
 	}
 	
 	public List<Membro> fildAll() { return new ArrayList<Membro>(membros.values()); }
@@ -61,5 +77,5 @@ public class RepositorioMembro {
 		
 	public Membro remove(Long id) { return membros.remove(id); }
 	
-	public Integer countAll() { return this.membros.size(); }	
+	public Integer countAll() { return this.tamanho; }	
 }
