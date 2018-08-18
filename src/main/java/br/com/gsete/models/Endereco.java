@@ -16,9 +16,9 @@ public class Endereco {
 	public String bairro;
 	@JsonProperty(value = "municipio", required = true)
 	public String municipio;
-	@JsonProperty(value = "nacionalidade", required = true)
+	@JsonProperty(value = "nacionalidade")
 	public String nacionalidade;
-	@JsonProperty(value = "complemento", required = true)
+	@JsonProperty(value = "complemento")
 	public String complemento;
 	
 	public Endereco() { }
