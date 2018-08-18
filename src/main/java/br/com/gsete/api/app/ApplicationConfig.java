@@ -5,7 +5,7 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-import br.com.gsete.api.rest.RecursoMembro;
+import br.com.gsete.api.rest.*;
 
 @ApplicationPath("")
 public class ApplicationConfig extends Application {
@@ -13,6 +13,7 @@ public class ApplicationConfig extends Application {
 
 	public ApplicationConfig() {
 		singletons.add(new RecursoMembro());
+		singletons.add(new RecursoCongregacao());
 	}
 
 	@Override

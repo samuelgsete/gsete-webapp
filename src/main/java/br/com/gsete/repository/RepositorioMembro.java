@@ -18,7 +18,7 @@ public class RepositorioMembro {
 	
 	public RepositorioMembro() throws ParseException {
 		membros.put(1L, new Membro(1, "SAMUEL DE SOUZA TAVEIRA", "20078888721", "607.839.003-17", "Solteiro(a)", "Masculino", f.parse("21/06/1995"), "(85)98971-1010", "(85)93376-2133", "samuelgsete@gmail.com", new Endereco("RUA PAULO HENRIQUE CAVALCANTE", 95, "61895-000", "CE", "AGUA VERDE", "GUAIÚBA", "BRASILEIRO", "CASA"), "REDENÇÃO", "ANTONIO TAVEIRA", "MARIA MADALENA DE SOUZA TAVEIRA", f.parse("13/04/2009"), new Date(), "MÚSICO", "AÇUDE DO SR. NAZÁRO", "SEDE", "JOVENS", new Date(), "NACIDO NA FÉ", "ATIVO"));
-		membros.put(2L, new Membro(2, "ALDENOURO MAIA DA SILVA", "280915194", "003.713.703-45", "Casado(a)", "Feminino", f.parse("01/12/1974"), "(85)98926-7719", "(85)93376-2193", "matheusmaia@live.com", new Endereco("RUA BEIRA RIO", 105, "61895-000", "CE", "AGUA VERDE", "GUAIÚBA", "BRASILEIRO", "CASA"), "PACATUBA", "JOSÉ ALVES DA SILVA", "ALDAIR MARTINS MAIA DA SILVA", f.parse("02/05/1999"), new Date(), "REGENTE DE SENHORAS", "SEDE ACARAPE", "SEDE", "SENHORAS", new Date(), "NACIDO NA FÉ", "ATIVO"));
+		membros.put(2L, new Membro(2, "ALDENOURA MAIA DA SILVA", "280915194", "003.713.703-45", "Casado(a)", "Feminino", f.parse("01/12/1974"), "(85)98926-7719", "(85)93376-2193", "matheusmaia@live.com", new Endereco("RUA BEIRA RIO", 105, "61895-000", "CE", "AGUA VERDE", "GUAIÚBA", "BRASILEIRO", "CASA"), "PACATUBA", "JOSÉ ALVES DA SILVA", "ALDAIR MARTINS MAIA DA SILVA", f.parse("02/05/1999"), new Date(), "REGENTE DE SENHORAS", "SEDE ACARAPE", "SEDE", "SENHORAS", new Date(), "NACIDO NA FÉ", "ATIVO"));
 		membros.put(3L, new Membro(3, "MARIA LUCILENE MAIA DIOGENES", "96023055337", "902.429.123.20", "Casado(a)", "Feminino", f.parse("19/12/1977"), "(85)98861-1839", "(85)93376-2144", "", new Endereco("JOÃO BANDEIRA TORRES", 37, "61895-000", "CE", "AGUA VERDE", "GUAIÚBA", "BRASILEIRO", "CASA"), "FORTALEZA", "JOSÉ OLAVIO MAIA", "MARIA DAS GRACAS ALVES MAIA", f.parse("24/01/2015"), new Date(), "MÚSICO", "AÇUDE DO SR. NAZÁRO", "SEDE", "JOVENS", new Date(), "NOVO CONVERTIDA", "ATIVO"));
 		membros.put(4L, new Membro(4, "ANTÔNIO TAVEIRA", "29220584", "539.892.013-87", "CASADO(A)", "MASCULINO", f.parse("13/10/1964"), "(85)98818-0673", "(85)93376-2135", "samuelgsete@gmail.com", new Endereco("RUA PAULO HENRIQUE CAVALCANTE", 95, "61895-000", "CE", "AGUA VERDE", "GUAIÚBA", "BRASILEIRO", "CASA"), "PACATUBA", "FRANCISCO TAVEIRA FILHO", "MARIA PINHEIRO TAVEIRA", f.parse("19/05/1996"), new Date(), "AUXILIAR", "SEDE ACARAPE", "SEDE", "OBREIROS", new Date(), "", "ATIVO"));
 		membros.put(5L, new Membro(5, "ELIABE DE SOUZA AMORIM", "200887230032", "074.589.413-88", "Solteiro(a)", "Masculino", f.parse("08/11/1998"), "(85)98611-6244", "(85)93376-2132", "eliabebass@gmail.com", new Endereco("RUA BEIRA RIO", 131, "61895-000", "CE", "AGUA VERDE", "GUAIÚBA", "BRASILEIRO", "CASA"), "REDENÇÃO", "JONAS MARTINS DE AMORIM", "IZABEL DE SOUSA AMORIM", f.parse("28/11/2009"), new Date(), "SONOPLASTA", "AÇUDE DO SR. NAZÁRO", "SEDE", "JOVENS", new Date(), "NACIDO NA FÉ", "ATIVO"));
@@ -62,6 +62,22 @@ public class RepositorioMembro {
 	}
 	
 	public List<Membro> fildAll() { return new ArrayList<Membro>(membros.values()); }
+	
+	public List<String> buscarTodosNomesMembros() {
+		List<String> nomes = new ArrayList<String>();
+		for (Membro m : membros.values()) {
+			nomes.add(m.getNome());
+		}
+		return nomes;
+	}
+	
+	public List<String> buscarTodosMembros() {
+		List<String> nomes = new ArrayList<String>();
+		for (Membro m : membros.values()) {
+			nomes.add(m.getNome());
+		}
+		return nomes;
+	}
 	
 	public Membro findBy(Long id) { return membros.get(id); }
 	
