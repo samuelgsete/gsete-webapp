@@ -6,38 +6,71 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Objects;
 
-public class Membro extends Pessoa {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "membro")
+public class Membro extends Pessoa {
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_endereco"), nullable = false)
 	@JsonProperty(value = "endereco", required = true)
 	private Endereco endereco;
+	
+	@Column(name="naturalidade", nullable=true, unique=false)
 	@JsonProperty(value = "naturalidade", required = true)
 	private String naturalidade;
+	
+	@Column(name="nome_pai", nullable = false, unique = false)
 	@JsonProperty(value = "nomePai", required = true)
 	private String nomePai;
+	
+	@Column(name="nome_mae", nullable = false, unique = false)
 	@JsonProperty(value = "nomeMae", required = true)
 	private String nomeMae;
+	
+	@Column(name="data_batismo", nullable = false, unique = false)
 	@JsonProperty(value = "dataBatismo")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataBatismo;
+	
+	@Column(name="data_conversao", nullable = false, unique = false)
 	@JsonProperty(value = "dataConversao")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataConversao;
-	@JsonProperty(value = "cargo", required = true)
+	
+	@Column(name="cargo", nullable = true, unique = false)
+	@JsonProperty(value = "cargo")
 	private String cargo;
+	
+	@Column(name="local_batismo", nullable = true, unique = false)
 	@JsonProperty(value = "localBatismo")
 	private String localBatismo;
+	
+	@Column(name="congregacao", nullable = false, unique = false)
 	@JsonProperty(value = "congregacao", required = true)
 	private String congregacao;
+	
+	@Column(name="departamento", nullable = true, unique = false)
 	@JsonProperty(value = "departamento")
 	private String departamento;
+	
+	@Column(name="data_registro", nullable = false, unique = false)
 	@JsonProperty(value = "dataRegistro", required = true)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataRegistro;
+	
+	@Column(name = "observacoes", nullable = true, unique = false)
 	@JsonProperty(value = "observacoes")
 	private String observacoes;
-	@JsonProperty(value = "status", required = true)
-	private String status;
-	
+		
 	public Membro() { }
 
 	public Membro(String nome) { this.nome = nome; }
@@ -56,7 +89,6 @@ public class Membro extends Pessoa {
 		this.departamento = departamento;
 		this.dataRegistro = dataRegistro;
 		this.observacoes = observacoes;
-		this.status = status;
 	}
 
 	public Endereco getEndereco() {
@@ -154,14 +186,6 @@ public class Membro extends Pessoa {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 	
 	@Override
 	public boolean equals(Object o) {
@@ -178,6 +202,6 @@ public class Membro extends Pessoa {
 		return "Membro [endereco=" + endereco + ", naturalidade=" + naturalidade + ", nomePai=" + nomePai + ", nomeMae="
 				+ nomeMae + ", dataBatismo=" + dataBatismo + ", dataConversao=" + dataConversao + ", cargo=" + cargo
 				+ ", localBatismo=" + localBatismo + ", congregacao=" + congregacao + ", departamento=" + departamento
-				+ ", dataRegistro=" + dataRegistro + ", observacoes=" + observacoes + ", status=" + status + "]";
+				+ ", dataRegistro=" + dataRegistro + ", observacoes=" + observacoes + "]";
 	}		
 }

@@ -4,24 +4,42 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Congregacao {
 
-	@JsonProperty(value = "id", required = true)
-	private Integer id;
+@Entity
+@Table(name = "congregacao")
+public class Congregacao extends EntidadeBase{
+	
+	@Column(name = "nome", nullable = false, unique = true)
 	@JsonProperty(value = "nome", required = true)
 	private String nome;
+	
+	@Column(name = "dirigente", nullable = false, unique = false)
 	@JsonProperty(value = "dirigente", required = true)
 	private String dirigente;
+	
+	@OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonProperty(value = "departamentos")
 	private Set<Departamento> departamentos = new HashSet<>();
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_endereco"), nullable = false)
 	@JsonProperty(value = "endereco", required = true)
 	private Endereco endereco;
+	
+	@Column(name="data_registro", nullable = false, unique = false)
 	@JsonProperty(value = "dataRegistro", required = true)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataRegistro;
+	
+	@Column(name = "observacoes", nullable = true, unique = false)
 	@JsonProperty(value = "observacoes")
 	private String observaoes;
 	
@@ -29,8 +47,7 @@ public class Congregacao {
 	
 	public Congregacao(String nome) { this.nome = nome; }
 	
-	public Congregacao(Integer id, String nome, String dirigente, Set<Departamento> departamentos, Endereco endereco, Date dataRegistro, String observacoes) {
-		this.id = id;
+	public Congregacao(String nome, String dirigente, Set<Departamento> departamentos, Endereco endereco, Date dataRegistro, String observacoes) {
 		this.nome = nome;
 		this.dirigente = dirigente;
 		this.departamentos = departamentos;
@@ -39,14 +56,6 @@ public class Congregacao {
 		this.observaoes = observacoes;
 	}
 	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -97,7 +106,7 @@ public class Congregacao {
 
 	@Override
 	public String toString() {
-		return "Congregacao [id=" + id + ", nome=" + nome + ", dirigente=" + dirigente + ", departamentos="
+		return "Congregacao [nome=" + nome + ", dirigente=" + dirigente + ", departamentos="
 				+ departamentos + ", endereco=" + endereco + ", dataRegistro=" + dataRegistro + ", observaoes="
 				+ observaoes + "]";
 	}

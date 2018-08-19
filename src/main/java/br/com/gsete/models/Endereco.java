@@ -1,25 +1,46 @@
 package br.com.gsete.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Endereco {
+@Entity
+@Table(name="endereco")
+public class Endereco extends EntidadeBase{
 	
+	@Column(name="logradouro", nullable = false)
 	@JsonProperty(value = "logradouro", required = true)
-	public String logradouro;
+	private String logradouro;
+	
+	@Column(name="numero", nullable = false)
 	@JsonProperty(value = "numero", required = true)
-	public Integer numero;
+	private Integer numero;
+	
+	@Column(name="cep", nullable = false)
 	@JsonProperty(value = "cep", required = true)
-	public String cep;
+	private String cep;
+	
+	@Column(name="uf", nullable = false)
 	@JsonProperty(value = "uf", required = true)
-	public String uf;
+	private String uf;
+	
+	@Column(name="bairro", nullable = false)
 	@JsonProperty(value = "bairro", required = true)
-	public String bairro;
+	private String bairro;
+	
+	@Column(name="municipio", nullable = false)
 	@JsonProperty(value = "municipio", required = true)
-	public String municipio;
+	private String municipio;
+	
+	@Column(name="nacionalidade", nullable = true)
 	@JsonProperty(value = "nacionalidade")
-	public String nacionalidade;
+	private String nacionalidade;
+	
+	@Column(name="complemento", nullable = true)
 	@JsonProperty(value = "complemento")
-	public String complemento;
+	private String complemento;
 	
 	public Endereco() { }
 	
