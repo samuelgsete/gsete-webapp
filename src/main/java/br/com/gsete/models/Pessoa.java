@@ -2,30 +2,49 @@ package br.com.gsete.models;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Pessoa {
+@MappedSuperclass
+public abstract class Pessoa extends EntidadeBase{
 	
-	@JsonProperty(value = "id", required = true)
-	protected Integer id;
+	@Column(name="nome", nullable=false)
 	@JsonProperty(value = "nome", required = true)
 	protected String nome;
+	
+	@Column(name="cpf", nullable = false, unique = true)
 	@JsonProperty(value = "cpf", required = true)
 	protected String cpf;
+	
+	@Column(name="rg", nullable=false, unique = true)
 	@JsonProperty(value = "rg", required = true)
 	protected String rg;
+	
+	@Column(name="estado_civil", nullable=false)
 	@JsonProperty(value = "estadoCivil", required = true)
 	protected String estadoCivil;
+	
+	@Column(name="sexo", nullable=false)
 	@JsonProperty(value = "sexo", required = true)
 	protected String sexo;
+	
+	@Column(name="data_nascimento", nullable=false)
 	@JsonProperty(value = "dataNascimento", required = true)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	protected Date dataNascimento;
+	
+	@Column(name="celular", nullable=false, unique = true)
 	@JsonProperty(value = "celular", required = true)
 	protected String celular;
+	
+	@Column(name="telefone", nullable=true)
 	@JsonProperty(value = "telefone")
 	protected String telefone;
+	
+	@Column(name="email", nullable=true, unique = true)
 	@JsonProperty(value = "email")
 	protected String email;
 	
@@ -114,14 +133,6 @@ public class Pessoa {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-	
-	public void setId(Integer id) {
-		this.id = id;
 	}
 		
 	@Override
