@@ -7,10 +7,10 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table
+@Table(name = "departamento")
 public class Departamento extends EntidadeBase {
 	
-	@Column(name = "nome", nullable = false, unique = true)
+	@Column(name = "nome", nullable = false, unique = false)
 	@JsonProperty(value = "nome", required = true)
 	private String nome;
 	

@@ -1,5 +1,6 @@
 package br.com.gsete.api.rest;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,9 +19,10 @@ import br.com.gsete.service.ServicoMembro;
 @Path("/membros")
 public class RecursoMembro {
 	
+	@Inject
 	private ServicoMembro servico;
 	
-	public RecursoMembro() { servico = new ServicoMembro(); }
+	public RecursoMembro() { }
 		
 	@GET
 	@Produces("application/json")
@@ -36,29 +38,29 @@ public class RecursoMembro {
 	@Path("/{id}")
 	@Produces("application/json")
 	public Response getMembro( @PathParam("id") Long id) {
-		Membro membro = servico.getMembro(id);
-		if(membro == null){ 
-			return Response.noContent().build(); 
-		}
-		return Response.ok(membro).build();
+		Membro m = servico.getMembro(id);
+		return m != null ? Response.ok(m).build() : Response.noContent().build();
 	}
 	
 	@POST
 	@Consumes("application/json")
 	public Response salvarMembro(Membro m) {
-		return servico.salvarMembro(m) == null ? Response.status(203).build() : Response.status(201).build();
+		String mensagem = servico.salvarMembro(m);
+		return mensagem != null ? Response.ok(mensagem).build() : Response.noContent().build();
 	}
 	
 	@PUT
 	@Consumes("application/json")
 	public Response atualizarMembro(Membro m) {
-		return servico.atualizarMembro(m) == null ? Response.status(203).build() : Response.status(201).build();
+		String mensagem = servico.atualizarMembro(m);
+		return mensagem != null ? Response.ok(mensagem).build() : Response.noContent().build();
 	}
 	
 	@DELETE
 	@Path("/{id}")
 	@Consumes("application/json")
 	public Response deletarMembro( @PathParam("id") Long id) {
-		return Response.noContent().entity(servico.removerMembro(id)).build();
+		servico.removerMembro(id);
+		return Response.noContent().entity("Removido com sucesso!").build();
 	}
 }

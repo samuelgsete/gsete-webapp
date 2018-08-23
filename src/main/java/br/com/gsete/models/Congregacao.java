@@ -2,6 +2,7 @@ package br.com.gsete.models;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -25,12 +26,13 @@ public class Congregacao extends EntidadeBase{
 	@JsonProperty(value = "dirigente", required = true)
 	private String dirigente;
 	
-	@OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany
+	@JoinColumn(name = "congregacao_id")
 	@JsonProperty(value = "departamentos")
-	private Set<Departamento> departamentos = new HashSet<>();
+	private Set<Departamento> departamentos = new HashSet<Departamento>();
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(foreignKey = @ForeignKey(name = "fk_endereco"), nullable = false)
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="endereco_id")
 	@JsonProperty(value = "endereco", required = true)
 	private Endereco endereco;
 	
@@ -102,6 +104,16 @@ public class Congregacao extends EntidadeBase{
 
 	public void setObservaoes(String observaoes) {
 		this.observaoes = observaoes;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) { return true; }
+        if (o == null || getClass() != o.getClass()) { return false; }
+
+        Congregacao that = (Congregacao) o;
+
+        return Objects.equals(nome, that.nome);
 	}
 
 	@Override

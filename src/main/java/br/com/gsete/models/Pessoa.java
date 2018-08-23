@@ -36,21 +36,21 @@ public abstract class Pessoa extends EntidadeBase{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	protected Date dataNascimento;
 	
-	@Column(name="celular", nullable=false, unique = true)
+	@Column(name="celular", nullable=false, unique = false)
 	@JsonProperty(value = "celular", required = true)
 	protected String celular;
 	
-	@Column(name="telefone", nullable=true)
+	@Column(name="telefone", nullable = true)
 	@JsonProperty(value = "telefone")
 	protected String telefone;
 	
-	@Column(name="email", nullable=true, unique = true)
+	@Column(name="email", nullable=true, unique = false)
 	@JsonProperty(value = "email")
 	protected String email;
 	
 	public Pessoa() { }
 	
-	public Pessoa(Integer id, String nome, String rg, String cpf, String estadoCivil, String sexo, Date dataNascimento, String celular, String telefone, String email) {
+	public Pessoa(Long id, String nome, String rg, String cpf, String estadoCivil, String sexo, Date dataNascimento, String celular, String telefone, String email) {
 		this.id = id;
 		this.nome = nome;
 		this.rg = rg;

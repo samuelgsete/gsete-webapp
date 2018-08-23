@@ -6,11 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,8 +17,8 @@ import javax.persistence.Table;
 @Table(name = "membro")
 public class Membro extends Pessoa {
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(foreignKey = @ForeignKey(name = "fk_endereco"), nullable = false)
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="endereco_id")
 	@JsonProperty(value = "endereco", required = true)
 	private Endereco endereco;
 	
@@ -75,7 +73,7 @@ public class Membro extends Pessoa {
 
 	public Membro(String nome) { this.nome = nome; }
 
-	public Membro(Integer id, String nome, String rg, String cpf, String estadoCivil, String sexo, Date dataNascimento, String celular, String telefone, String email, Endereco endereco, String naturalidade, String nomePai, String nomeMae, Date dataBatismo, Date dataConversao, String cargo, String localBatismo, String congregacao, String departamento, Date dataRegistro, String observacoes, String status) {
+	public Membro(Long id, String nome, String rg, String cpf, String estadoCivil, String sexo, Date dataNascimento, String celular, String telefone, String email, Endereco endereco, String naturalidade, String nomePai, String nomeMae, Date dataBatismo, Date dataConversao, String cargo, String localBatismo, String congregacao, String departamento, Date dataRegistro, String observacoes) {
 		super(id, nome, rg, cpf, estadoCivil, sexo, dataNascimento, celular, telefone, email);
 		this.endereco = endereco;
 		this.naturalidade = naturalidade;
