@@ -12,17 +12,12 @@
 		<class>br.com.gsete.models.Departamento</class>
 		
 		<properties>
-			<property name="javax.persistence.sql-load-script-source"
-				value="META-INF/sql/data.sql" />
-			<property name="hibernate.transaction.jta.platform"
-				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/data.sql" />
+			<property name="javax.persistence.schema-generation.database.action" value="none" />
+			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create" />
-			<property name="javax.persistence.schema-generation.database.action"
-				value="drop-and-create" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.archive.autodetection" value="class" />
+			<property name="hibernate.format_sql" value="false" />
 		</properties>
 	</persistence-unit>
 </persistence>
