@@ -40,7 +40,6 @@ public class ServicoCongregacao {
 	
 	public String atualizarCongregacao(Congregacao c) {
 		Congregacao atual = this.getCongregacao(c.getId());
-		System.out.println(c.equals(atual));
 		if(c.equals(atual)) {
 			repositorio.update(c);
 			return "Atualizado com sucesso!";
@@ -55,6 +54,16 @@ public class ServicoCongregacao {
 			}	
 		}
 		return null; 
+	}
+	
+	public List<String> getMembrosPorCongregacao(Long id) {
+		if(id > 0) {
+			//return repositorio.getMembrosPorCongregacao(getCongregacao(id).getNome());
+			String congregacao= getCongregacao(id).getNome();
+			System.out.println(congregacao);
+			return repositorio.getMembrosPorCongregacao(congregacao);
+		}
+		return null;
 	}
 		
 	public Long totalElementos() { return repositorio.getTamanho(); }

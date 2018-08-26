@@ -18,6 +18,11 @@ public class RepositorioCongregacao extends GenericRepository<Congregacao> {
 		Query query = getConnection().createQuery("SELECT m.nome FROM Membro m WHERE lower(m.nome) LIKE '" + filtro.toLowerCase() + "%'");
 		return (List<String>) query.getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getMembrosPorCongregacao(String congregacao) {
+		return em.createQuery("SELECT m.nome FROM Membro m WHERE lower(m.congregacao) = '" + congregacao.toLowerCase() + "'").getResultList();
+	}
 				
 	public Long getTamanho() { return this.size; }
 }

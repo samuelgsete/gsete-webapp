@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "membro")
 public class Membro extends Pessoa {
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
 	@JoinColumn(name="endereco_id")
 	@JsonProperty(value = "endereco", required = true)
 	private Endereco endereco;
@@ -192,7 +193,8 @@ public class Membro extends Pessoa {
 
         Membro that = (Membro) o;
 
-        return Objects.equals(cpf, that.cpf);
+        //return Objects.equals(cpf, that.cpf);
+        return Objects.equals(id, that.id);
 	}   
 	
 	@Override
