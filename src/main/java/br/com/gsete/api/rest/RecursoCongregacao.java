@@ -50,6 +50,14 @@ public class RecursoCongregacao {
 		List<String> nomes = servico.getNomesMembrosFiltrado(filtro);
 		return nomes != null ? Response.status(200).entity(nomes).build() : Response.noContent().build();
 	}
+	
+	@GET
+	@Path("/{id}/membros")
+	@Produces("application/json")
+	public Response getMembrosPorCongregacao(@PathParam("id") Long id) {
+		List<String> membros = servico.getMembrosPorCongregacao(id);
+		return membros != null ? Response.ok(membros).build() : Response.noContent().build();
+	}
 		
 	@POST
 	@Consumes("application/json")

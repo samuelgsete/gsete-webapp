@@ -41,7 +41,7 @@ public class Endereco extends EntidadeBase{
 	@Column(name="complemento", nullable = true)
 	@JsonProperty(value = "complemento")
 	private String complemento;
-	
+		
 	public Endereco() { }
 	
 	public Endereco(String logradouro, Integer numero, String cep, String uf, String bairro, String municipio, String nacionalidade, String complemento) {
@@ -54,7 +54,7 @@ public class Endereco extends EntidadeBase{
 		this.nacionalidade = nacionalidade;
 		this.complemento = complemento;
 	}
-	
+		
 	public String getLogradouro() {
 		return logradouro;
 	}

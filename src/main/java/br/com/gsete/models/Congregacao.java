@@ -31,7 +31,7 @@ public class Congregacao extends EntidadeBase{
 	@JsonProperty(value = "departamentos")
 	private Set<Departamento> departamentos = new HashSet<Departamento>();
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
 	@JoinColumn(name="endereco_id")
 	@JsonProperty(value = "endereco", required = true)
 	private Endereco endereco;
@@ -113,7 +113,8 @@ public class Congregacao extends EntidadeBase{
 
         Congregacao that = (Congregacao) o;
 
-        return Objects.equals(nome, that.nome);
+        //return Objects.equals(nome, that.nome);
+        return Objects.equals(id, that.id);
 	}
 
 	@Override
