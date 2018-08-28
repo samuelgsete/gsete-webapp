@@ -62,22 +62,19 @@ public class RecursoCongregacao {
 	@POST
 	@Consumes("application/json")
 	public Response salvarCongregacao(Congregacao c) {
-		String mensagem = servico.salvarCongregacao(c);
-		return mensagem != null ? Response.ok(mensagem).build() : Response.noContent().build();
+		return servico.salvarCongregacao(c) ? Response.ok().build() : Response.noContent().build();
 	}
 	
 	@PUT
 	@Consumes("application/json")
 	public Response atualizarCongregacao(Congregacao c) {
-		String mensagem = servico.atualizarCongregacao(c);
-		return mensagem != null ? Response.ok(mensagem).build() : Response.noContent().build();
+		return servico.atualizarCongregacao(c) ? Response.ok().build() : Response.noContent().build();
 	}
 	
 	@DELETE
 	@Path("/{id}")
 	@Consumes("application/json")
 	public Response removerCongregacao(@PathParam("id") Long id) {
-		String mensagem = servico.deletarCongregacao(id);
-		return mensagem != null ? Response.ok(mensagem).build() : Response.noContent().build();
+		return servico.deletarCongregacao(id) ? Response.ok().build() : Response.noContent().build();
 	}
 }

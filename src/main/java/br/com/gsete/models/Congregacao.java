@@ -26,7 +26,7 @@ public class Congregacao extends EntidadeBase{
 	@JsonProperty(value = "dirigente", required = true)
 	private String dirigente;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "congregacao_id")
 	@JsonProperty(value = "departamentos")
 	private Set<Departamento> departamentos = new HashSet<Departamento>();

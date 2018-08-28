@@ -30,30 +30,31 @@ public class ServicoCongregacao {
 		return id > 0 ? repositorio.findBy(id) : null;
 	}
 	
-	public String salvarCongregacao(Congregacao c) {
+	public boolean salvarCongregacao(Congregacao c) {
 		if(c != null) {
 			repositorio.save(c);
-			return "Criado com sucesso!";
+			return true;
 		}
-		return null;
+		return false;
 	}
 	
-	public String atualizarCongregacao(Congregacao c) {
+	public boolean atualizarCongregacao(Congregacao c) {
+		System.out.println(c.getId());
 		Congregacao atual = this.getCongregacao(c.getId());
 		if(c.equals(atual)) {
 			repositorio.update(c);
-			return "Atualizado com sucesso!";
+			return true;
 		}
-		return null;
+		return false;
 	}
 	
-	public String deletarCongregacao(Long id) {
+	public boolean deletarCongregacao(Long id) {
 		if(id > 0) {
 			if(repositorio.remove(id)){
-				return "Removido com sucesso!";
+				return true;
 			}	
 		}
-		return null; 
+		return false; 
 	}
 	
 	public List<String> getMembrosPorCongregacao(Long id) {

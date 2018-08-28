@@ -29,31 +29,31 @@ public class ServicoMembro {
 		return id > 0 ? repositorio.findBy(id) : null;
 	}
 	
-	public String salvarMembro(Membro m) {
+	public boolean salvarMembro(Membro m) {
 		if(m != null) {
 			repositorio.save(m);
-			return "Criado com sucesso!";
+			return true;
 		}
-		return null;
+		return false;
 	}
 	
-	public String atualizarMembro(Membro m) {
+	public boolean atualizarMembro(Membro m) {
 		Membro atual = getMembro(m.getId());
 		if(m.equals(atual)) {
 			repositorio.update(m);
-			return "Atualizado com sucesso.";
+			return true;
 		}
-		return null;
+		return false;
 	}
 	
 	
-	public String removerMembro(Long id) {
+	public boolean removerMembro(Long id) {
 		if(id > 0) {
 			if(repositorio.remove(id)) {
-				return "Removido com sucesso.";
+				return true;
 			}	
 		}
-		return null;
+		return false;
 	}			
 	
 	public Long totalElementos() { return repositorio.getTamanho(); }

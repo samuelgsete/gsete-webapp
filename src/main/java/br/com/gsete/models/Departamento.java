@@ -26,7 +26,7 @@ public class Departamento extends EntidadeBase {
 	@JsonProperty(value = "regente", required = true)
 	private String regente;
 	
-	@Column(name = "observacoes", nullable = false, unique = false)
+	@Column(name = "observacoes", nullable = true, unique = false)
 	@JsonProperty(value = "observacoes")
 	private String observacoes;
 	

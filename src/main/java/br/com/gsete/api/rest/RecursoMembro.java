@@ -30,14 +30,14 @@ public class RecursoMembro {
 		return Response
 				.status(200)
 				.entity(servico.buscarTodosPaginado(inicio, limite, filtro))
-				.header("Content-Range", format("%d-%d/%d", inicio, limite, servico.totalElementos()))
+				.header("Content-Range", format("%d-%d/%d", inicio, inicio + limite, servico.totalElementos()))
 				.build();
 	}
 
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-	public Response getMembro( @PathParam("id") Long id) {
+	public Response getMembro(@PathParam("id") Long id) {
 		Membro m = servico.getMembro(id);
 		return m != null ? Response.ok(m).build() : Response.noContent().build();
 	}
@@ -45,22 +45,19 @@ public class RecursoMembro {
 	@POST
 	@Consumes("application/json")
 	public Response salvarMembro(Membro m) {
-		String mensagem = servico.salvarMembro(m);
-		return mensagem != null ? Response.ok(mensagem).build() : Response.noContent().build();
+		return servico.salvarMembro(m) ? Response.status(201).build() : Response.noContent().build();
 	}
 	
 	@PUT
 	@Consumes("application/json")
 	public Response atualizarMembro(Membro m) {
-		String mensagem = servico.atualizarMembro(m);
-		return mensagem != null ? Response.ok(mensagem).build() : Response.noContent().build();
+		return servico.atualizarMembro(m) ? Response.status(201).build() : Response.noContent().build();
 	}
 	
 	@DELETE
 	@Path("/{id}")
 	@Consumes("application/json")
-	public Response deletarMembro( @PathParam("id") Long id) {
-		servico.removerMembro(id);
-		return Response.noContent().entity("Removido com sucesso!").build();
+	public Response removerMembro(@PathParam("id") Long id) {
+		return servico.removerMembro(id) ? Response.ok().build() : Response.noContent().build();
 	}
 }
