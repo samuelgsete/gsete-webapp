@@ -10,6 +10,7 @@
 		<class>br.com.gsete.models.Endereco</class>
 		<class>br.com.gsete.models.Congregacao</class>
 		<class>br.com.gsete.models.Departamento</class>
+		<class>br.com.gsete.models.Remessa</class>
 		
 		<properties>
 			<!-- <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->

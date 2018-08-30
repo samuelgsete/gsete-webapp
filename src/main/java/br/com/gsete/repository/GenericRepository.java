@@ -43,10 +43,16 @@ public abstract class GenericRepository<T> {
 	}
 	
 	@Transactional
-	public void save(T object) { em.persist(object); }
+	public boolean save(T object) { 
+		em.persist(object); 
+		return true;
+	}
 		
 	@Transactional
-	public void update(T object) { em.merge(object); }
+	public boolean update(T object) { 
+		em.merge(object); 
+		return true;
+	}
 	
 	@Transactional
 	public boolean remove(Long id) { 
