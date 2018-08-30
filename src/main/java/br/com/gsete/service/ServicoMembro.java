@@ -8,6 +8,7 @@ import br.com.gsete.models.Membro;
 import br.com.gsete.repository.RepositorioMembro;
 
 public class ServicoMembro {
+	
 	@Inject
 	private RepositorioMembro repositorio;
 	
