@@ -36,13 +36,23 @@ public class RecursoRemessa {
 	}
 	
 	@GET
+	@Path("/filtro-membros")
+	@Produces("application/json")
+	public Response getMembrosFiltrados(@QueryParam("congregacao") String congregacao) {
+		return Response
+				.ok()
+				.entity(servico.filtrarMembros(congregacao))
+				.build();
+	}
+	
+	@GET
 	@Path("/{id}")
 	@Produces("application/json")
 	public Response getRemessa(@PathParam("id") Long id) {
 		Remessa r = servico.getRemessa(id);
 		return r != null ? Response.ok(r).build() : Response.noContent().build();
 	}
-	
+		
 	@POST
 	@Consumes("application/json")
 	public Response salvarMembro(Remessa r) {

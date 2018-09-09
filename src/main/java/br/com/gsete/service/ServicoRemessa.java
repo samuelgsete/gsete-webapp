@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import br.com.gsete.models.Membro;
 import br.com.gsete.models.Remessa;
 import br.com.gsete.repository.RepositorioRemessa;
 
@@ -22,6 +23,10 @@ public class ServicoRemessa {
 			return repositorio.buscaPaginada(inicio, limite, filtro);
 		}
 		return null;
+	}
+	
+	public List<Membro> filtrarMembros(String congregacao) {
+		return repositorio.filtroMembros(congregacao);
 	}
 	
 	public boolean criarRemessa(Remessa r) {

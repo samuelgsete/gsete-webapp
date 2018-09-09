@@ -3,6 +3,8 @@ package br.com.gsete.repository;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
+import br.com.gsete.models.Membro;
 import br.com.gsete.models.Remessa;
 
 public class RepositorioRemessa extends GenericRepository<Remessa> {
@@ -31,6 +33,12 @@ public class RepositorioRemessa extends GenericRepository<Remessa> {
 		List<Remessa> registros = query.getResultList();
 		size = (long) registros.size();
 		return registros;
+	}
+	
+	public List<Membro> filtroMembros(String congregacao){
+		String sql = "SELECT m FROM Membro m WHERE m.congregacao = '" + congregacao + "'";
+		TypedQuery<Membro> query = em.createQuery(sql, Membro.class);
+		return query.getResultList();
 	}
 	
 	public long getTamanho() { return this.size; }
