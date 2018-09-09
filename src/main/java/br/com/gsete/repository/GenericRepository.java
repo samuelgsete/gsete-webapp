@@ -12,7 +12,7 @@ public abstract class GenericRepository<T> {
 	
 	protected EntityManagerFactory emf;
 	protected EntityManager em;
-	protected Long size;
+	protected Long size = 0L;
 	private Class<T> entityClass;
 	
 	public GenericRepository(Class<T> entityClass) {

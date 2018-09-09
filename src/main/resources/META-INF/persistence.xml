@@ -11,6 +11,7 @@
 		<class>br.com.gsete.models.Congregacao</class>
 		<class>br.com.gsete.models.Departamento</class>
 		<class>br.com.gsete.models.Remessa</class>
+		<class>br.com.gsete.models.Foto</class>
 		
 		<properties>
 			<!-- <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> -->

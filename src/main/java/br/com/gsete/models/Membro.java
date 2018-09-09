@@ -23,6 +23,11 @@ public class Membro extends Pessoa {
 	@JsonProperty(value = "endereco", required = true)
 	private Endereco endereco;
 	
+	@OneToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
+	@JoinColumn(name="foto_id")
+	@JsonProperty(value = "foto", required = true)
+	private Foto foto;
+	
 	@Column(name="naturalidade", nullable=true, unique=false)
 	@JsonProperty(value = "naturalidade", required = true)
 	private String naturalidade;
@@ -69,11 +74,7 @@ public class Membro extends Pessoa {
 	@Column(name = "observacoes", nullable = true, unique = false)
 	@JsonProperty(value = "observacoes")
 	private String observacoes;
-	
-	@Column(name = "foto", nullable = true, unique = false, length=10485760)
-	@JsonProperty(value = "foto")
-	private String foto;
-		
+			
 	public Membro() { }
 
 	public Membro(String nome) { this.nome = nome; }
@@ -100,6 +101,14 @@ public class Membro extends Pessoa {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	public Foto getFoto() {
+		return foto;
+	}
+
+	public void setFoto(Foto foto) {
+		this.foto = foto;
 	}
 
 	public String getNaturalidade() {
@@ -190,30 +199,21 @@ public class Membro extends Pessoa {
 		this.observacoes = observacoes;
 	}
 		
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) { return true; }
         if (o == null || getClass() != o.getClass()) { return false; }
 
         Membro that = (Membro) o;
-
-        //return Objects.equals(cpf, that.cpf);
         return Objects.equals(id, that.id);
-	}   
-	
+	}
+
 	@Override
 	public String toString() {
-		return "Membro [endereco=" + endereco + ", naturalidade=" + naturalidade + ", nomePai=" + nomePai + ", nomeMae="
-				+ nomeMae + ", dataBatismo=" + dataBatismo + ", dataConversao=" + dataConversao + ", cargo=" + cargo
-				+ ", localBatismo=" + localBatismo + ", congregacao=" + congregacao + ", departamento=" + departamento
-				+ ", dataRegistro=" + dataRegistro + ", observacoes=" + observacoes + "]";
-	}		
+		return "Membro [endereco=" + endereco + ", foto=" + foto + ", naturalidade=" + naturalidade + ", nomePai="
+				+ nomePai + ", nomeMae=" + nomeMae + ", dataBatismo=" + dataBatismo + ", dataConversao=" + dataConversao
+				+ ", cargo=" + cargo + ", localBatismo=" + localBatismo + ", congregacao=" + congregacao
+				+ ", departamento=" + departamento + ", dataRegistro=" + dataRegistro + ", observacoes=" + observacoes
+				+ "]";
+	}   		
 }
