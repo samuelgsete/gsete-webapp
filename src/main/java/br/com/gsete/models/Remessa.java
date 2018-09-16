@@ -33,8 +33,11 @@ public class Remessa extends EntidadeBase {
 	
 	@OneToMany
 	@JoinColumn(name = "remessa_id")
-	@JsonProperty(value = "membros")
-	private Set<Membro> membros = new HashSet<Membro>();
+	@JsonProperty(value = "carteirinhas")
+	private Set<Carteirinha> carteirinhas = new HashSet<Carteirinha>();
+	
+	@JsonProperty(value = "tamanho")
+	private Integer tamanho;
 	
 	public Remessa() { }
 	
@@ -64,14 +67,23 @@ public class Remessa extends EntidadeBase {
 		this.dataAbertura = dataAbertura;
 	}
 
-	public Set<Membro> getMembros() {
-		return membros;
+	
+	public Set<Carteirinha> getCarteirinhas() {
+		return carteirinhas;
 	}
 
-	public void setMembros(Set<Membro> membros) {
-		this.membros = membros;
+	public void setCarteirinhas(Set<Carteirinha> carteirinhas) {
+		this.carteirinhas = carteirinhas;
 	}
 	
+	public Integer getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(Integer tamanho) {
+		this.tamanho = tamanho;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) { return true; }
@@ -84,6 +96,6 @@ public class Remessa extends EntidadeBase {
 	@Override
 	public String toString() {
 		return "Remessa [descricao=" + descricao + ", status=" + status + ", dataAbertura=" + dataAbertura
-				+ ", membros=" + membros + "]";
+				+ ", carteirinhas=" + carteirinhas + "]";
 	}
 }

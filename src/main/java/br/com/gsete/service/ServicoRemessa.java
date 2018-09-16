@@ -16,6 +16,9 @@ public class ServicoRemessa {
 	public ServicoRemessa() { }
 	
 	public List<Remessa> buscarPaginado(Integer inicio, Integer limite, String filtro) {
+		if(inicio == null && limite == null){
+			return null;
+		}
 		if(inicio == 0 && limite == 0) {
 			return repositorio.findAll();
 		}
@@ -24,7 +27,7 @@ public class ServicoRemessa {
 		}
 		return null;
 	}
-	
+		
 	public List<Membro> filtrarMembros(String congregacao) {
 		return repositorio.filtroMembros(congregacao);
 	}
