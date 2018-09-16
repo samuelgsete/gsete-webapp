@@ -22,7 +22,7 @@ public class RepositorioRemessa extends GenericRepository<Remessa> {
 		query.setMaxResults(limite);
 		return query.getResultList();
 	}
-	
+		
 	private Long getQuantidadeRegistros(String filtro) {
 		Query query = em.createQuery("SELECT COUNT(r) FROM Remessa r WHERE lower(r.descricao) LIKE '" + filtro.toLowerCase() + "%'");
 		return (Long) query.getSingleResult();

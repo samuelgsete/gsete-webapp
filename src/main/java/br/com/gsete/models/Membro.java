@@ -74,6 +74,10 @@ public class Membro extends Pessoa {
 	@Column(name = "observacoes", nullable = true, unique = false)
 	@JsonProperty(value = "observacoes")
 	private String observacoes;
+	
+	@Column(name = "tem_carteirinha", nullable = true, unique = false)
+	@JsonProperty(value = "temCarteirinha")
+	private Boolean temCarteirinha = false;
 			
 	public Membro() { }
 
@@ -198,7 +202,15 @@ public class Membro extends Pessoa {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
-		
+			
+	public Boolean getTemCarteirinha() {
+		return temCarteirinha;
+	}
+
+	public void setTemCarteirinha(Boolean temCarteirinha) {
+		this.temCarteirinha = temCarteirinha;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) { return true; }

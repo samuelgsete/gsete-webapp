@@ -55,7 +55,7 @@ public class RecursoRemessa {
 		
 	@POST
 	@Consumes("application/json")
-	public Response salvarMembro(Remessa r) {
+	public Response salvarRemessa(Remessa r) {
 		return servico.criarRemessa(r) ? Response.status(201).build() : Response.noContent().build();
 	}
 	
@@ -71,5 +71,4 @@ public class RecursoRemessa {
 	public Response removerRemessa(@PathParam("id") Long id) {
 		return servico.removerRemessa(id) ? Response.ok().build() : Response.noContent().build();
 	}
-
 }
