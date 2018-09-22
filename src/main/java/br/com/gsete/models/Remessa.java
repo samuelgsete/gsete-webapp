@@ -1,16 +1,10 @@
 package br.com.gsete.models;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -31,11 +25,12 @@ public class Remessa extends EntidadeBase {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date dataAbertura;
 	
-	@OneToMany
-	@JoinColumn(name = "remessa_id")
-	@JsonProperty(value = "carteirinhas")
-	private Set<Carteirinha> carteirinhas = new HashSet<Carteirinha>();
+	@Column(name = "data_fechamento", nullable = true, unique = false)
+	@JsonProperty(value = "dataFechamento", required = true)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	private Date dataFechamento;
 	
+	@Column(name = "tamanho", nullable = true, unique = false)
 	@JsonProperty(value = "tamanho")
 	private Integer tamanho;
 	
@@ -66,16 +61,15 @@ public class Remessa extends EntidadeBase {
 	public void setDataAbertura(Date dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
-
-	
-	public Set<Carteirinha> getCarteirinhas() {
-		return carteirinhas;
+		
+	public Date getDataFechamento() {
+		return dataFechamento;
 	}
 
-	public void setCarteirinhas(Set<Carteirinha> carteirinhas) {
-		this.carteirinhas = carteirinhas;
+	public void setDataFechamento(Date dataFechamento) {
+		this.dataFechamento = dataFechamento;
 	}
-	
+
 	public Integer getTamanho() {
 		return tamanho;
 	}
@@ -96,6 +90,6 @@ public class Remessa extends EntidadeBase {
 	@Override
 	public String toString() {
 		return "Remessa [descricao=" + descricao + ", status=" + status + ", dataAbertura=" + dataAbertura
-				+ ", carteirinhas=" + carteirinhas + "]";
+				+ ", dataFechamento=" + dataFechamento + ", tamanho=" + tamanho + "]";
 	}
 }

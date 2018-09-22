@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,6 +31,11 @@ public class Carteirinha extends EntidadeBase {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date emissao;
 	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="remessa_id")
+	@JsonProperty(value = "remessa")
+	private Remessa remessa;
+	
 	public Carteirinha() {	}
 
 	public Membro getMembro() {
@@ -39,7 +45,31 @@ public class Carteirinha extends EntidadeBase {
 	public void setMembro(Membro membro) {
 		this.membro = membro;
 	}
-	
+		
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getEmissao() {
+		return emissao;
+	}
+
+	public void setEmissao(Date emissao) {
+		this.emissao = emissao;
+	}
+
+	public Remessa getRemessa() {
+		return remessa;
+	}
+
+	public void setRemessa(Remessa remessa) {
+		this.remessa = remessa;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) { return true; }
@@ -51,6 +81,7 @@ public class Carteirinha extends EntidadeBase {
 
 	@Override
 	public String toString() {
-		return "Carteirinha [membro=" + membro + ", status=" + status + ", emissao=" + emissao + "]";
-	}
+		return "Carteirinha [membro=" + membro + ", status=" + status + ", emissao=" + emissao + ", remessa=" + remessa
+				+ "]";
+	}	
 }

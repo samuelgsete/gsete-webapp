@@ -27,13 +27,27 @@ public class RercursoCarteirinha {
 	
 	@GET
 	@Produces("application/json")
-	public Response listarPaginado(@QueryParam("inicio") int inicio, @QueryParam("limite") int limite, @QueryParam("filtro") String filtro) {
+	public Response listarPaginado( @QueryParam("inicio") int inicio, 
+									@QueryParam("limite") int limite, 
+									@QueryParam("filtro") String filtro, 
+									@QueryParam("congregacao") String congregacao
+								  ) {
 		return Response
 				.ok()
-				.entity(servico.listarPaginado(inicio, limite, filtro))
+				.entity(servico.listarPaginado(inicio, limite, filtro, congregacao))
 				.header("Content-Range", format("%d-%d/%d", inicio, inicio + limite, servico.getTotalElmentos()))
 				.build();
 				
+	}
+	
+	@GET
+	@Path("nomes-membros/{id}")
+	@Produces("application/json")
+	public Response getNomesMembros(@PathParam("id") Long id) {
+		return Response
+				.ok()
+				.entity(servico.buscarNomesMembros(id))
+				.build();
 	}
 	
 	@GET
