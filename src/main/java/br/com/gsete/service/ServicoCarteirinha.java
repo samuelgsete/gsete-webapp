@@ -14,12 +14,12 @@ public class ServicoCarteirinha {
 	
 	public ServicoCarteirinha() { }
 	
-	public List<Carteirinha> listarPaginado(Integer inicio, Integer limite, String filtro) {
+	public List<Carteirinha> listarPaginado(Integer inicio, Integer limite, String filtro, String congregacao) {
 		if(inicio == 0 && limite == 0) {
 			return repositorio.findAll();
 		}
 		if(inicio >=0 && limite >=0 ) {
-			return repositorio.listarPaginado(inicio, limite, filtro);
+			return repositorio.listarPaginado(inicio, limite, filtro, congregacao);
 		}
 		return null;
 	}
@@ -30,6 +30,8 @@ public class ServicoCarteirinha {
 		}
 		return null;
 	}
+	
+	public List<String> buscarNomesMembros(Long id) { return id > 0 ? repositorio.buscarNomesMembros(id) : null; }
 	
 	public Boolean criarCarteirinha(Carteirinha c) {
 		if(c != null) {

@@ -78,7 +78,7 @@ public class Membro extends Pessoa {
 	@Column(name = "tem_carteirinha", nullable = true, unique = false)
 	@JsonProperty(value = "temCarteirinha")
 	private Boolean temCarteirinha = false;
-			
+				
 	public Membro() { }
 
 	public Membro(String nome) { this.nome = nome; }

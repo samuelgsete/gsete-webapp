@@ -13,9 +13,9 @@ public class RepositorioCarteirinha extends GenericRepository<Carteirinha> {
 		super(Carteirinha.class);
 	}
 	
-	public List<Carteirinha> listarPaginado(Integer inicio, Integer limite, String filtro) {
-		size = contador("SELECT COUNT(c) FROM Carteirinha c, Membro m WHERE c.membro.id = m.id and lower(m.nome) LIKE '%" + filtro.toLowerCase() + "%'");
-		TypedQuery<Carteirinha> query = em.createQuery("SELECT c FROM Carteirinha c, Membro m WHERE c.membro.id = m.id and lower(m.nome) LIKE '%" + filtro.toLowerCase() + "%'", Carteirinha.class);
+	public List<Carteirinha> listarPaginado(Integer inicio, Integer limite, String filtro, String congregacao) {
+		size = contador("SELECT COUNT(c) FROM Carteirinha c, Membro m WHERE c.membro.id = m.id and lower(m.nome) LIKE '%" + filtro.toLowerCase() + "%' and lower(m.congregacao) LIKE '%" + congregacao.toLowerCase() + "%'");
+		TypedQuery<Carteirinha> query = em.createQuery("SELECT c FROM Carteirinha c, Membro m WHERE c.membro.id = m.id and lower(m.nome) LIKE '%" + filtro.toLowerCase() + "%' and lower(m.congregacao) LIKE '%" + congregacao.toLowerCase() + "%'", Carteirinha.class);
 		query.setFirstResult(inicio);
 		query.setMaxResults(limite);
 		return query.getResultList();
@@ -29,6 +29,12 @@ public class RepositorioCarteirinha extends GenericRepository<Carteirinha> {
 		query.setFirstResult(inicio);
 		query.setMaxResults(limite);
 		return query.getResultList();
+	}
+	
+	public List<String> buscarNomesMembros(Long id) {
+		TypedQuery<String> query = em.createQuery("SELECT c.membro.nome FROM Carteirinha c WHERE c.remessa.id = '" + id + "'", String.class);
+		List<String> membros = query.getResultList();
+		return membros;
 	}
 	
 	private Long contador(String query) { return (Long) em.createQuery(query).getSingleResult(); }

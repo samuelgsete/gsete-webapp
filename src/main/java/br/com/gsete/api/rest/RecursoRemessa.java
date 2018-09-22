@@ -34,17 +34,7 @@ public class RecursoRemessa {
 				.build();
 				
 	}
-	
-	@GET
-	@Path("/filtro-membros")
-	@Produces("application/json")
-	public Response getMembrosFiltrados(@QueryParam("congregacao") String congregacao) {
-		return Response
-				.ok()
-				.entity(servico.filtrarMembros(congregacao))
-				.build();
-	}
-	
+		
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")

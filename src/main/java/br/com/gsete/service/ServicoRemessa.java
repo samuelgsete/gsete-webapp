@@ -3,8 +3,6 @@ package br.com.gsete.service;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import br.com.gsete.models.Membro;
 import br.com.gsete.models.Remessa;
 import br.com.gsete.repository.RepositorioRemessa;
 
@@ -27,11 +25,7 @@ public class ServicoRemessa {
 		}
 		return null;
 	}
-		
-	public List<Membro> filtrarMembros(String congregacao) {
-		return repositorio.filtroMembros(congregacao);
-	}
-	
+			
 	public boolean criarRemessa(Remessa r) {
 		return r != null ? repositorio.save(r) : false;
 	}
